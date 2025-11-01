@@ -59,7 +59,7 @@ public class WebSecurityConfig {
         return http.cors(Customizer.withDefaults())
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(request->request
-                        .requestMatchers("/login","/register","/authenticate").permitAll()
+                        .requestMatchers("/login","/register","/authenticate","/actuator/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
