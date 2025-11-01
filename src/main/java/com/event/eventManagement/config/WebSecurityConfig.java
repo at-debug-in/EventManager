@@ -58,6 +58,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors(Customizer.withDefaults())
                 .csrf(csrf->csrf.disable())
+                .cors(cors ->Customizer.withDefaults())
                 .authorizeHttpRequests(request->request
                         .requestMatchers("/login","/register","/authenticate","/actuator/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
