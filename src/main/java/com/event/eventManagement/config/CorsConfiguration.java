@@ -10,7 +10,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // sab endpoints ke liye
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("http://localhost:5173","http://groupproject-5ztudve1w-shaurtyas-projects.vercel.app")
                 .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
