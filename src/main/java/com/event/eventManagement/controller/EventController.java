@@ -24,8 +24,8 @@ public class EventController {
         return new ResponseEntity<>(eventService.getAllEvent(page).toList(), HttpStatus.OK);
     }
 
-    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody Event event){
         return new ResponseEntity<>(eventService.createEvent(event),HttpStatus.CREATED);
     }
@@ -35,14 +35,14 @@ public class EventController {
         return new ResponseEntity<>(eventService.getEventById(id),HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("{id}")
     public ResponseEntity<Event> updateEvent(@RequestBody Event e,@PathVariable Long id){
         return new ResponseEntity<>(eventService.updateEvent(e,id),HttpStatus.OK);
     }
 
-    @DeleteMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping
     public ResponseEntity<?> deleteEvent(@RequestParam Long id){
         eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
