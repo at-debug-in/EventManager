@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class EventController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Event> createEvent(@RequestBody Event event){
         return new ResponseEntity<>(eventService.createEvent(event),HttpStatus.CREATED);
     }
@@ -34,11 +36,13 @@ public class EventController {
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Event> updateEvent(@RequestBody Event e,@PathVariable Long id){
         return new ResponseEntity<>(eventService.updateEvent(e,id),HttpStatus.OK);
     }
 
     @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteEvent(@RequestParam Long id){
         eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
